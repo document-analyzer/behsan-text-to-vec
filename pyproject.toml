@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "behsan-text-to-vec"
-dynamic = ["version"]
+dynamic = ["version", "dependencies"]
 description = ''
 readme = "README.md"
 requires-python = ">=3.7"
@@ -24,7 +24,10 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+
+#dependencies = []
+[tool.hatch.metadata.hooks.requirements_txt]
+files = ["requirements.txt"]
 
 [project.urls]
 Documentation = "https://github.com/unknown/behsan-text-to-vec#readme"
