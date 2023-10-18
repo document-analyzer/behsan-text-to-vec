@@ -1,0 +1,30 @@
+stages:
+  - build
+  - upload
+
+build_package:
+  image: docker.mci.dev/python:3.10
+  script:
+    - pip install build pytest
+    - pip install .
+    - python -m pytest
+  retry: 2
+  stage: build
+
+
+upload_package:
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d{1,2}\.\d{1,2}\.\d{1,3}(?:[.-].+)?$/'
+      when: always
+  image: docker.mci.dev/python:3.10
+  script:
+    - pip install build pytest twine
+    - python -m pytest
+    - python -m build
+    - python -m twine upload sdist/*  --repository-url https://repo.mci.dev/artifactory/api/pypi/local-pypi  -u ${CICD_REPO_USER} -p ${CICD_REPO_PASS}
+
+  artifacts:
+    paths:
+      - sdist/*
+  retry: 2
+  stage: upload
