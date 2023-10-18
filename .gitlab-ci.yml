@@ -5,7 +5,7 @@ stages:
 build_package:
   image: docker.mci.dev/python:3.10
   script:
-    - pip install build pytest
+    - pip install pytest
     - pip install .
     - python -m pytest
   retry: 2
@@ -18,8 +18,7 @@ upload_package:
       when: always
   image: docker.mci.dev/python:3.10
   script:
-    - pip install build pytest twine
-    - python -m pytest
+    - pip install build twine
     - python -m build
     - python -m twine upload sdist/*  --repository-url https://repo.mci.dev/artifactory/api/pypi/local-pypi  -u ${CICD_REPO_USER} -p ${CICD_REPO_PASS}
 
