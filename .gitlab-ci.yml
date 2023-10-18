@@ -20,7 +20,7 @@ upload_package:
   script:
     - pip install build twine
     - python -m build
-    - python -m twine upload sdist/*  --repository-url https://repo.mci.dev/artifactory/api/pypi/local-pypi  -u ${CICD_REPO_USER} -p ${CICD_REPO_PASS}
+    - python -m twine upload dist/*  --repository-url https://repo.mci.dev/artifactory/api/pypi/local-pypi  -u ${CICD_REPO_USER} -p ${CICD_REPO_PASS}
 
   artifacts:
     paths:
