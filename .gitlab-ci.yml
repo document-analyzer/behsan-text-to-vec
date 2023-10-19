@@ -16,11 +16,11 @@ test_package:
   script:
     - pip install pytest pytest-cov
     - pip install .
-    - python -m pytest --cov-report html:test-coverage-report --cov-report term --cov
+    - python -m pytest --cov-report html:coverage_html_report --cov-report term --cov
   stage: test
   artifacts:
     paths:
-      - test-coverage-report/*
+      - coverage_html_report/*
 
 build_package:
   rules:

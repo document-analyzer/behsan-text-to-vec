@@ -137,7 +137,7 @@ ban-relative-imports = "all"
 "__init__.py" = ["F401"]
 
 [tool.coverage.run]
-source_pkgs = ["behsan_text_to_vec", "tests"]
+source_pkgs = ["behsan_text_to_vec"]
 branch = true
 parallel = true
 omit = [
@@ -145,12 +145,16 @@ omit = [
 ]
 
 [tool.coverage.paths]
-behsan_text_to_vec = ["src/behsan_text_to_vec", "*/behsan-text-to-vec/src/behsan_text_to_vec"]
-tests = ["tests", "*/behsan-text-to-vec/tests"]
+behsan_text_to_vec = ["src/behsan_text_to_vec"]
+tests = ["tests"]
 
 [tool.coverage.report]
 exclude_lines = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
+#  "__version__ = "
 ]
+
+[tool.coverage.html]
+directory = "coverage_html_report"
