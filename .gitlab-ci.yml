@@ -16,7 +16,7 @@ test_package:
   script:
     - pip install pytest pytest-cov pytest-xdist
     - pip install .
-    - python -m pytest  --cov-report html --cov-report term --cov
+    - python -m pytest --cov-report html --cov-report term --cov
   stage: test
   artifacts:
     paths:
