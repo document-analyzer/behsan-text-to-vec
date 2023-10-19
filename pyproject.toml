@@ -144,6 +144,7 @@ omit = [
   "src/behsan_text_to_vec/__about__.py",
 ]
 
+
 [tool.coverage.paths]
 behsan_text_to_vec = ["src/behsan_text_to_vec"]
 tests = ["tests"]
@@ -153,8 +154,11 @@ exclude_lines = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
-#  "__version__ = "
 ]
+omit = [
+  "src/behsan_text_to_vec/__about__.py",
+]
+
 
 [tool.coverage.html]
 directory = "coverage_html_report"

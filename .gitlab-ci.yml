@@ -14,7 +14,7 @@ lint_package:
 test_package:
   image: docker.mci.dev/python:3.10
   script:
-    - pip install pytest pytest-cov
+    - pip install pytest pytest-cov pytest-xdist
     - pip install .
     - python -m pytest  --cov-report html --cov-report term --cov
   stage: test
