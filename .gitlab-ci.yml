@@ -28,7 +28,6 @@ build_package:
   script:
     - pip install build
     - python -m build
-
   artifacts:
     paths:
       - dist/*
@@ -44,9 +43,5 @@ upload_package:
   script:
     - pip install twine
     - python -m twine upload dist/*  --repository-url https://repo.mci.dev/artifactory/api/pypi/local-pypi  -u ${CICD_REPO_USER} -p ${CICD_REPO_PASS}
-
-  artifacts:
-    paths:
-      - dist/*
   retry: 2
   stage: upload
