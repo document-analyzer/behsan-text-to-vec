@@ -1,11 +1,16 @@
-import pandas as pd
-import pickle
-import numpy as np
 import pathlib
+import pickle
+
+import numpy as np
+import pandas as pd
+
 from .utils import normalizer
 
 
 class TextToVec:
+    """
+    TextToVec modoule
+    """
     def __init__(self):
         self.confidence = 2
         self.n_factors = 300
@@ -14,28 +19,28 @@ class TextToVec:
         self.A = np.asarray(item_factors)
         self.inverse_matrix = np.linalg.solve(self.A.T.dot(self.A), self.A.T)
         self.zero_matrix = np.zeros(self.n_factors)
-        with open(resources_path.joinpath('item_codes.pickle').as_posix(), 'rb') as file:
+        with open(resources_path.joinpath("item_codes.pickle").as_posix(), "rb") as file:
             item_codes = pickle.load(file)
         item_codes = item_codes.reset_index(drop=True)
         self.item_codes = {
-            item_codes['item'][i]: item_codes['item_code'][i] for i in range(len(item_codes))
+            item_codes["item"][i]: item_codes["item_code"][i] for i in range(len(item_codes))
         }
 
     def term_finder(self, the_text):
         token_count = 5
-        the_text = the_text + ' --- --- --- --- --- --- '
-        m_array = [i for i in range(token_count)]
+        the_text = the_text + " --- --- --- --- --- --- "
+        m_array = list(range(token_count))
         tokenized_text = the_text.split()
         aa = []
         for x in range(len(tokenized_text) - 5):
             for j in range(token_count):
                 m_array[j] = tokenized_text[x + j]
-            token = ''
+            token = ""
             for e in range(token_count):
-                token = token + ' ' + m_array[e]
+                token = token + " " + m_array[e]
                 token = token.strip()
                 if token in self.item_codes.keys():
-                    aa = aa + [token]
+                    aa = [*aa, token]
         return aa
 
     def term_to_code(self, the_terms):
