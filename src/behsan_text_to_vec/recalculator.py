@@ -9,7 +9,7 @@ from .utils import normalizer
 
 class TextToVec:
     """
-    TextToVec modoule
+    TextToVec module
     """
     def __init__(self):
         self.confidence = 2
