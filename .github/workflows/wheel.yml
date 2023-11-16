@@ -38,7 +38,7 @@ jobs:
       run: python -m build
 
     - name: Installing tests requirements
-      run: pip install -q -r requirements-test.txt
+      run: pip install -q -r requirements.txt
 
     - name: Run tests
       run: python -m pytest --cov
@@ -67,8 +67,8 @@ jobs:
           name: artifact
           path: dist
 
-#      - name: Ruff Check # TODO: remove this
-#        uses: jpetrucciani/ruff-check@main
+      - name: Ruff Check # TODO: remove this
+        uses: jpetrucciani/ruff-check@main
 
       - name: Check metadata
         run: pipx run twine check dist/*
