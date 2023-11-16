@@ -13,7 +13,7 @@
 ## Installation
 
 ```console
-pip install behsan-text-to-vec
+pip install -i https://test.pypi.org/simple/ behsan-text-to-vec
 ```
 
 ## License
